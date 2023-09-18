@@ -11,3 +11,17 @@ eureka:
 services:
   customer-info: http://customer-info-service/info/
   customer-validation: http://customer-validation-service/verify/
+
+# enable dynamic config properties refresh
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+
+# add trace and span ids to log pattern
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+
